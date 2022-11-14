@@ -25,37 +25,3 @@ class MyApp extends StatelessWidget {
     );
   }
 }
-
-// class Profiles extends StatefulWidget {
-//     const Profiles({super.key});
-
-//     @override
-//     State<Profiles> createState() => _ProfileState();
-//   }
-
-//   class _ProfileState extends State<Profiles> {
-//     @override
-//     Widget build(BuildContext context) {
-//       final List<String> words = ["John", "Jake", "Amy", "Carlos"];
-//       return ListView(
-//         children: words.map((data) =>ListTile(
-//           title: Align(
-//             alignment: Alignment.center,
-//             child: Text(data,
-//                       style: TextStyle(
-//                       fontWeight: FontWeight.bold,
-//                       fontSize: 30,
-//                       color: Color(0xff11b719)))
-//           ),
-//           onTap: () => ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-//             content: Text("$data",
-//                           style: TextStyle(
-//                           fontWeight: FontWeight.bold,
-//                           fontSize: 14,
-//                           color: Color(0xff11b719))),
-//             duration: Duration(seconds: 2)
-//           )),
-//         )).toList(),
-//       );
-//     }
-//   }
