@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import './create_user.dart';
 
 
 class Profiles extends StatefulWidget {
@@ -46,7 +47,14 @@ class Profiles extends StatefulWidget {
                 style: ButtonStyle(
                     foregroundColor: MaterialStateProperty.all<Color>(Colors.blue),
                 ),
-                onPressed: () { },
+                onPressed: () async{
+                    Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => CreateUser(),
+                          ),
+                        );
+                },
                 child: Text('Add Your Own Profile',
                         style: TextStyle(
                             fontSize: 20,
