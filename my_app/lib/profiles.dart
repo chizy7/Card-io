@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import './create_user.dart';
 
 
 class Profiles extends StatefulWidget {
@@ -14,7 +15,46 @@ class Profiles extends StatefulWidget {
       final List<String> words = ["John", "Jake", "Amy", "Carlos"];
       return Scaffold(
         body: Column(
-        children: [
+          children: [
+            Container(
+              width: 600,
+              height: MediaQuery.of(context).size.height * .25,
+              decoration: BoxDecoration(
+                shape: BoxShape.rectangle,
+                color: Color.fromRGBO(102, 155, 139, 1),
+              ),
+              child: RichText(
+                text: TextSpan(
+                  style:
+                    DefaultTextStyle.of(context).style.apply(fontSizeFactor: 1.5),
+                  children: const <TextSpan>[
+                    TextSpan(
+                      text: 'Profiles',
+                      alignment: Alignment.center,
+                      style: TextStyle(
+                        fontSize: 45, 
+                        fontWeight: FontWeight.bold,
+                        color: Colors.white,
+                        decoration: TextDecoration.none
+                      )
+                    ),
+                  ],
+                )
+              )
+            ),
+
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 25.0),
+              child: Container(
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  
+                )
+              )
+            )
+        
+          
+        
             Container(
             height: 500,
             width: 500,
@@ -46,7 +86,14 @@ class Profiles extends StatefulWidget {
                 style: ButtonStyle(
                     foregroundColor: MaterialStateProperty.all<Color>(Colors.blue),
                 ),
-                onPressed: () { },
+                onPressed: () async{
+                    Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => CreateUser(),
+                          ),
+                        );
+                },
                 child: Text('Add Your Own Profile',
                         style: TextStyle(
                             fontSize: 20,
