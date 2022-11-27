@@ -1,8 +1,23 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:my_app/auth/controller/auth_controller.dart';
 import './register.dart';
 import '/services/flutterfire.dart';
 import './profiles.dart';
+
+class SignInWithGoogleButton extends ConsumerWidget {
+  const SignInWithGoogleButton({Key? key}) : super(key: key);
+
+  void signInWithGoogle(BuildContext context, WidgetRef ref) {
+    ref.read(authControllerProvider).signInWithGoogle();
+  }
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    return SizedBox.shrink();
+  }
+}
 
 class Login extends StatefulWidget {
   const Login({Key? key}) : super(key: key);
@@ -172,7 +187,12 @@ class _LoginState extends State<Login> {
                     text: "Sign in with Google",
                     recognizer: TapGestureRecognizer()
                       ..onTap = () {
-                        print('Google Sign in');
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => SignInWithGoogleButton(),
+                          ),
+                        );
                       }),
               ),
             ),
