@@ -17,7 +17,7 @@ class _ProfileState extends State<Profiles> {
       Container(
           width: 600,
           height: MediaQuery.of(context).size.height * .25,
-          decoration: BoxDecoration(
+          decoration: const BoxDecoration(
             shape: BoxShape.rectangle,
             color: Color.fromRGBO(102, 155, 139, 1),
           ),
@@ -38,7 +38,7 @@ class _ProfileState extends State<Profiles> {
       Padding(
           padding: const EdgeInsets.symmetric(horizontal: 25.0),
           child: Container(
-              decoration: BoxDecoration(
+              decoration: const BoxDecoration(
             color: Colors.white,
           ))),
       Container(
@@ -50,18 +50,18 @@ class _ProfileState extends State<Profiles> {
                       title: Align(
                           alignment: Alignment.center,
                           child: Text(data,
-                              style: TextStyle(
+                              style: const TextStyle(
                                   fontWeight: FontWeight.bold,
                                   fontSize: 30,
                                   color: Color(0xff11b719)))),
                       onTap: () => ScaffoldMessenger.of(context).showSnackBar(
                           SnackBar(
                               content: Text("$data",
-                                  style: TextStyle(
+                                  style: const TextStyle(
                                       fontWeight: FontWeight.bold,
                                       fontSize: 14,
                                       color: Color(0xff11b719))),
-                              duration: Duration(seconds: 2))),
+                              duration: const Duration(seconds: 2))),
                     ))
                 .toList(),
           )),
@@ -76,11 +76,11 @@ class _ProfileState extends State<Profiles> {
             Navigator.push(
               context,
               MaterialPageRoute(
-                builder: (context) => CreateUser(),
+                builder: (context) => const CreateUser(),
               ),
             );
           },
-          child: Text(
+          child: const Text(
             'Add Your Own Profile',
             style: TextStyle(
               fontSize: 20,

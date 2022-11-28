@@ -1,5 +1,18 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:mysql1/mysql1.dart';
+
+void data() async {
+  var settings = new ConnectionSettings(
+      host: 'localhost',
+      port: 3306,
+      user: 'root',
+      password: 'KFc}~<]{/&Sm,E+r',
+      db: 'flutter_app');
+  var conn = await MySqlConnection.connect(settings);
+  var result = await conn.query(
+      'insert into user (name, email, bio, favorite_topic, id) values (?, ?, ?, ?, ?)',
+      ['Bob', 'bob@bob.com', 'test test', 'sport', 1]);
+}
 
 class CreateUser extends StatefulWidget {
   const CreateUser({super.key});
@@ -41,6 +54,8 @@ class MyPainterTall extends CustomPainter {
 class _CreateUserState extends State<CreateUser> {
   final TextEditingController _nameField = TextEditingController();
   final TextEditingController _bioField = TextEditingController();
+  final TextEditingController _topicField = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -225,7 +240,7 @@ class _CreateUserState extends State<CreateUser> {
                     color: const Color.fromRGBO(102, 155, 139, 1),
                   ),
                   child: MaterialButton(
-                      onPressed: () async {},
+                      onPressed: () => {data()},
                       child: const Text("Submit",
                           style: TextStyle(
                               color: Color.fromRGBO(244, 244, 249, 1)))),
