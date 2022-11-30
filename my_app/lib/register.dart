@@ -1,10 +1,9 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:my_app/profiles.dart';
-import 'auth.dart';
 import 'services/flutterfire.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-// import '../app/services/firebase_auth_service.dart';
+import 'create_user.dart';
 
 class Register extends StatefulWidget {
   const Register({Key? key}) : super(key: key);
@@ -23,18 +22,27 @@ class _RegisterState extends State<Register> {
   Widget build(BuildContext context) {
     return Scaffold(
         body: Column(children: <Widget>[
-      Container(
-        width: MediaQuery.of(context).size.width,
-        height: MediaQuery.of(context).size.height * .55,
-        decoration: const BoxDecoration(
-          color: Color.fromRGBO(102, 155, 139, 1),
-        ),
-        child: Image.asset(
-          height: 100,
-          width: 100,
-          'images/leaflet.png',
-        ),
-      ),
+      Stack(children: <Widget>[
+        Container(
+            color: const Color.fromRGBO(241, 241, 248, 1),
+            width: 400,
+            height: 450,
+            child: CustomPaint(
+              painter: MyPainterTall(),
+            )),
+        Center(
+            child: Padding(
+                padding: const EdgeInsets.only(top: 50.0),
+                child: Container(
+                    width: 300,
+                    height: 381,
+                    decoration: const BoxDecoration(
+                      shape: BoxShape.rectangle,
+                      image: DecorationImage(
+                          image: AssetImage('images/leaflet.png'),
+                          fit: BoxFit.fill),
+                    ))))
+      ]),
       Container(
         width: MediaQuery.of(context).size.width,
         height: MediaQuery.of(context).size.height * .45,
@@ -49,7 +57,7 @@ class _RegisterState extends State<Register> {
                     text: TextSpan(
                         style: DefaultTextStyle.of(context)
                             .style
-                            .apply(fontSizeFactor: 1.5),
+                            .apply(fontSizeFactor: .55),
                         children: const <TextSpan>[
                       TextSpan(
                           text: 'Sign Up to get started!',
@@ -70,7 +78,7 @@ class _RegisterState extends State<Register> {
                         decoration: const InputDecoration(
                           enabledBorder: OutlineInputBorder(
                               borderSide: BorderSide(
-                                  width: 2,
+                                  width: 1,
                                   color: Color.fromRGBO(102, 155, 139, 1))),
                           filled: true,
                           fillColor: Colors.white,
@@ -90,7 +98,7 @@ class _RegisterState extends State<Register> {
                         decoration: const InputDecoration(
                           enabledBorder: OutlineInputBorder(
                               borderSide: BorderSide(
-                                  width: 2,
+                                  width: 1,
                                   color: Color.fromRGBO(102, 155, 139, 1))),
                           filled: true,
                           fillColor: Colors.white,
@@ -118,7 +126,7 @@ class _RegisterState extends State<Register> {
                         decoration: const InputDecoration(
                           enabledBorder: OutlineInputBorder(
                               borderSide: BorderSide(
-                                  width: 2,
+                                  width: 1,
                                   color: Color.fromRGBO(102, 155, 139, 1))),
                           filled: true,
                           fillColor: Colors.white,
@@ -142,7 +150,7 @@ class _RegisterState extends State<Register> {
                         decoration: const InputDecoration(
                           enabledBorder: OutlineInputBorder(
                               borderSide: BorderSide(
-                                  width: 2,
+                                  width: 1,
                                   color: Color.fromRGBO(102, 155, 139, 1))),
                           filled: true,
                           fillColor: Colors.white,
@@ -158,14 +166,14 @@ class _RegisterState extends State<Register> {
                       ),
                     ),
                     Padding(
-                      padding: const EdgeInsets.only(top: 4.0),
+                      padding: const EdgeInsets.only(top: 15.0),
                       child: RichText(
                           text: TextSpan(
                               style: const TextStyle(
-                                  color: Color.fromRGBO(102, 155, 139, 1),
-                                  decoration: TextDecoration.underline,
-                                  fontSize: 15.0,
-                                  fontWeight: FontWeight.bold),
+                                color: Color.fromRGBO(102, 155, 139, 1),
+                                decoration: TextDecoration.underline,
+                                fontSize: 15.0,
+                              ),
                               text: "Register",
                               recognizer: TapGestureRecognizer()
                                 ..onTap = () async {
@@ -193,10 +201,10 @@ class _RegisterState extends State<Register> {
                       child: RichText(
                           text: TextSpan(
                               style: const TextStyle(
-                                  color: Color.fromRGBO(102, 155, 139, 1),
-                                  decoration: TextDecoration.underline,
-                                  fontSize: 15.0,
-                                  fontWeight: FontWeight.bold),
+                                color: Color.fromRGBO(102, 155, 139, 1),
+                                decoration: TextDecoration.underline,
+                                fontSize: 15.0,
+                              ),
                               text: "Cancel",
                               recognizer: TapGestureRecognizer()
                                 ..onTap = () {
