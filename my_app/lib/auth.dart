@@ -10,12 +10,26 @@ import 'create_user.dart';
 class Login extends StatelessWidget {
   Login({Key? key}) : super(key: key);
 
+  final FirebaseAuth _auth = FirebaseAuth.instance;
   final TextEditingController _emailField = TextEditingController();
   final TextEditingController _passwordField = TextEditingController();
 
   Future<User?> signInWithGoogle() async {
     await Authentication().signInWithGoogle();
     return null;
+  }
+
+  void checkAuthentification(BuildContext context) async {
+    _auth.authStateChanges().listen((user) {
+      if (user != null) {
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => Profiles(),
+          ),
+        );
+      }
+    });
   }
 
   @override
@@ -192,6 +206,7 @@ class Login extends StatelessWidget {
                             recognizer: TapGestureRecognizer()
                               ..onTap = () {
                                 signInWithGoogle();
+                                checkAuthentification(context);
                               }),
                       ),
                     ),

@@ -21,18 +21,13 @@ class _CreateCardsState extends State<CreateCards> {
       Container(
         width: 600,
         height: MediaQuery.of(context).size.height * .25,
-        
-
-        decoration: BoxDecoration(
+        decoration: const BoxDecoration(
           shape: BoxShape.circle,
           color: Color.fromRGBO(102, 155, 139, 1),
           // borderRadius: BorderRadius.only({Radius.zero, Radius.zero, 15.0, bottomRight = 15.0}),
         ),
-        
       ),
 
-
-    
       Padding(
         padding: const EdgeInsets.only(top: 50.0, right: 282),
         child: RichText(
@@ -60,12 +55,11 @@ class _CreateCardsState extends State<CreateCards> {
             border: Border.all(color: Colors.grey),
             borderRadius: BorderRadius.circular(12),
           ),
-          child: Padding(
-            padding: const EdgeInsets.only(left: 15.0),
+          child: const Padding(
+            padding: EdgeInsets.only(left: 15.0),
             child: TextField(
               decoration: InputDecoration(
                 border: InputBorder.none,
-                
               ),
             ),
           ),
@@ -91,10 +85,8 @@ class _CreateCardsState extends State<CreateCards> {
         ),
       ),
 
-
-
-        // Word TextField
-        Padding(
+      // Word TextField
+      Padding(
         padding: const EdgeInsets.symmetric(horizontal: 25.0),
         child: Container(
           decoration: BoxDecoration(
@@ -102,8 +94,8 @@ class _CreateCardsState extends State<CreateCards> {
             border: Border.all(color: Colors.grey),
             borderRadius: BorderRadius.circular(12),
           ),
-          child: Padding(
-            padding: const EdgeInsets.only(left: 15.0),
+          child: const Padding(
+            padding: EdgeInsets.only(left: 15.0),
             child: TextField(
               decoration: InputDecoration(
                 border: InputBorder.none,
@@ -112,7 +104,6 @@ class _CreateCardsState extends State<CreateCards> {
           ),
         ),
       ),
-      
 
       Padding(
         padding: const EdgeInsets.only(top: 50.0, right: 175),
@@ -133,7 +124,6 @@ class _CreateCardsState extends State<CreateCards> {
         ),
       ),
 
-
       // Definition TextField
       Padding(
         padding: const EdgeInsets.symmetric(horizontal: 25.0),
@@ -143,20 +133,18 @@ class _CreateCardsState extends State<CreateCards> {
             border: Border.all(color: Colors.grey),
             borderRadius: BorderRadius.circular(12),
           ),
-          child: SizedBox(
+          child: const SizedBox(
             height: 150,
-            
+
             child: Padding(
-                padding: const EdgeInsets.only(left: 15.0),
-                child: TextField(
-                
-              keyboardType: TextInputType.multiline,
-              maxLines: null,
-              decoration: InputDecoration(
-                border: InputBorder.none,
-                
+              padding: EdgeInsets.only(left: 15.0),
+              child: TextField(
+                keyboardType: TextInputType.multiline,
+                maxLines: null,
+                decoration: InputDecoration(
+                  border: InputBorder.none,
+                ),
               ),
-            ),
             ),
 
             // child: TextField (

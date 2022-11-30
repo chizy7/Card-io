@@ -1,14 +1,32 @@
 import 'package:flutter/material.dart';
 import './create_user.dart';
+import 'auth.dart';
+import 'google_auth.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
-class Profiles extends StatefulWidget {
-  const Profiles({super.key});
+class Profiles extends StatelessWidget {
+  Profiles({super.key});
 
-  @override
-  State<Profiles> createState() => _ProfileState();
-}
+  final FirebaseAuth _auth = FirebaseAuth.instance;
 
-class _ProfileState extends State<Profiles> {
+  Future<void> signOut(BuildContext context) async {
+    if (_auth.currentUser != null) {
+      await Authentication().signOut();
+
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => Login(),
+        ),
+      );
+    }
+  }
+
+//   @override
+//   State<Profiles> createState() => _ProfileState();
+// }
+
+// class _ProfileState extends State<Profiles> {
   @override
   Widget build(BuildContext context) {
     final List<String> words = ["John", "Jake", "Amy", "Carlos"];
@@ -16,7 +34,7 @@ class _ProfileState extends State<Profiles> {
         body: Column(children: [
       Container(
           width: 600,
-          height: MediaQuery.of(context).size.height * .25,
+          height: MediaQuery.of(context).size.height * .05,
           decoration: const BoxDecoration(
             shape: BoxShape.rectangle,
             color: Color.fromRGBO(102, 155, 139, 1),
@@ -86,6 +104,23 @@ class _ProfileState extends State<Profiles> {
               fontSize: 20,
             ),
           ),
+        ),
+      ),
+      Padding(
+        padding: const EdgeInsets.only(top: 15.0),
+        child: Container(
+          width: MediaQuery.of(context).size.width / 2.75,
+          height: 35,
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(15.0),
+            color: const Color.fromRGBO(102, 155, 139, 1),
+          ),
+          child: MaterialButton(
+              onPressed: () {
+                signOut(context);
+              },
+              child: const Text("Logout",
+                  style: TextStyle(color: Color.fromRGBO(244, 244, 249, 1)))),
         ),
       ),
     ]));
