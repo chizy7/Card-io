@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
+import 'dart:convert';
 
 class CreateCards extends StatefulWidget {
   const CreateCards({super.key});
@@ -7,10 +9,30 @@ class CreateCards extends StatefulWidget {
   State<CreateCards> createState() => _CreateCardsState();
 }
 
+Future<http.Response> postCard(topic, word, definition) {
+  return http.post(
+    Uri.parse(
+        'https://us-central1-group-project-2-16d40.cloudfunctions.net/postCardData/card_insert'),
+    headers: <String, String>{
+      'Content-Type': 'application/json; charset=UTF-8',
+    },
+    body: jsonEncode(<String, String>{
+      'id': '1',
+      'topic': '$topic',
+      'word': '$word',
+      'definition': '$definition',
+      'usrID': '2',
+    }),
+  );
+}
+
 class _CreateCardsState extends State<CreateCards> {
   final TextEditingController _topicField = TextEditingController();
   final TextEditingController _wordField = TextEditingController();
   final TextEditingController _definitionField = TextEditingController();
+  var topic;
+  var word;
+  var definition;
 
   @override
   Widget build(BuildContext context) {
@@ -49,18 +71,21 @@ class _CreateCardsState extends State<CreateCards> {
       // Topic TextField
       Padding(
         padding: const EdgeInsets.symmetric(horizontal: 25.0),
-        child: Container(
-          decoration: BoxDecoration(
-            color: Colors.white,
-            border: Border.all(color: Colors.grey),
-            borderRadius: BorderRadius.circular(12),
-          ),
-          child: const Padding(
-            padding: EdgeInsets.only(left: 15.0),
-            child: TextField(
-              decoration: InputDecoration(
-                border: InputBorder.none,
-              ),
+        child: TextFormField(
+          controller: _topicField,
+          decoration: const InputDecoration(
+            enabledBorder: OutlineInputBorder(
+                borderSide: BorderSide(
+                    width: 1, color: Color.fromRGBO(102, 155, 139, 1))),
+            filled: true,
+            fillColor: Colors.white,
+            hintText: "Enter the topic",
+            hintStyle: TextStyle(
+              color: Colors.black,
+            ),
+            labelText: "",
+            labelStyle: TextStyle(
+              color: Color.fromRGBO(102, 155, 139, 1),
             ),
           ),
         ),
@@ -94,11 +119,21 @@ class _CreateCardsState extends State<CreateCards> {
             border: Border.all(color: Colors.grey),
             borderRadius: BorderRadius.circular(12),
           ),
-          child: const Padding(
-            padding: EdgeInsets.only(left: 15.0),
-            child: TextField(
-              decoration: InputDecoration(
-                border: InputBorder.none,
+          child: TextFormField(
+            controller: _wordField,
+            decoration: const InputDecoration(
+              enabledBorder: OutlineInputBorder(
+                  borderSide: BorderSide(
+                      width: 1, color: Color.fromRGBO(102, 155, 139, 1))),
+              filled: true,
+              fillColor: Colors.white,
+              hintText: "Enter the word",
+              hintStyle: TextStyle(
+                color: Colors.black,
+              ),
+              labelText: "",
+              labelStyle: TextStyle(
+                color: Color.fromRGBO(102, 155, 139, 1),
               ),
             ),
           ),
@@ -127,39 +162,37 @@ class _CreateCardsState extends State<CreateCards> {
       // Definition TextField
       Padding(
         padding: const EdgeInsets.symmetric(horizontal: 25.0),
-        child: Container(
-          decoration: BoxDecoration(
-            color: Colors.white,
-            border: Border.all(color: Colors.grey),
-            borderRadius: BorderRadius.circular(12),
-          ),
-          child: const SizedBox(
-            height: 150,
-
-            child: Padding(
-              padding: EdgeInsets.only(left: 15.0),
-              child: TextField(
-                keyboardType: TextInputType.multiline,
-                maxLines: null,
-                decoration: InputDecoration(
-                  border: InputBorder.none,
-                ),
-              ),
+        child: TextFormField(
+          controller: _definitionField,
+          decoration: const InputDecoration(
+            enabledBorder: OutlineInputBorder(
+                borderSide: BorderSide(
+                    width: 1, color: Color.fromRGBO(102, 155, 139, 1))),
+            filled: true,
+            fillColor: Colors.white,
+            hintText: "Enter the definition",
+            hintStyle: TextStyle(
+              color: Colors.black,
             ),
-
-            // child: TextField (
-            //     keyboardType: TextInputType.multiline,
-            //     maxLines: null,
-            //     decoration: InputDecoration(
-            //     contentPadding: EdgeInsets.symmetric(vertical: 40.0),
-            //     border: InputBorder.none,
-            //     hintText: 'Bio',
-            //     ),
-            // ),
+            labelText: "",
+            labelStyle: TextStyle(
+              color: Color.fromRGBO(102, 155, 139, 1),
+            ),
           ),
         ),
       ),
 
+      // child: TextField (
+      //     keyboardType: TextInputType.multiline,
+      //     maxLines: null,
+      //     decoration: InputDecoration(
+      //     contentPadding: EdgeInsets.symmetric(vertical: 40.0),
+      //     border: InputBorder.none,
+      //     hintText: 'Bio',
+      //     ),
+      // ),
+
+// Button
       Padding(
         padding: const EdgeInsets.only(top: 35.0, bottom: 10.0),
         child: Container(
@@ -170,7 +203,14 @@ class _CreateCardsState extends State<CreateCards> {
             color: const Color.fromRGBO(102, 155, 139, 1),
           ),
           child: MaterialButton(
-              onPressed: () async {},
+              onPressed: () async {
+                setState(() {
+                  topic = _topicField.text;
+                  word = _wordField.text;
+                  definition = _definitionField.text;
+                });
+                postCard(topic, word, definition);
+              },
               child: const Text("Submit",
                   style: TextStyle(color: Color.fromRGBO(244, 244, 249, 1)))),
         ),
