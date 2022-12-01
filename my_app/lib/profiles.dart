@@ -4,11 +4,65 @@ import 'auth.dart';
 import 'google_auth.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'create_cards.dart';
+import 'dart:io';
+import 'package:http/http.dart' as http;
+import 'dart:convert';
+import 'dart:core';
+
+
+// class UserData {
+//   final int usrId;
+//   final String email;
+//   final String name;
+//   final String bio;
+//   final String fav_topic;
+  
+//   UserData({
+//     this.usrId,
+//     this.email,
+//     this.name,
+//     this.bio,
+//     this.fav_topic
+//   });
+// }
+
+
+// Future getRequest() async {
+//     //replace your restFull API here.
+//     String url = "https://us-central1-group-project-2-16d40.cloudfunctions.net/getData/allUsers";
+//     final response = await http.get(Uri.parse(url));
+  
+//     debugPrint(response.body);
+   
+//   }
+
 
 class Profiles extends StatelessWidget {
   Profiles({super.key});
+  get setState => null;
 
   final FirebaseAuth _auth = FirebaseAuth.instance;
+    Map dataMap = {};
+    List dataList = [];
+    Future<void> getData() async {
+    //replace your restFull API here.
+    String url = "https://us-central1-group-project-2-16d40.cloudfunctions.net/getData/allUsers";
+    final response = await http.get(Uri.parse(url));
+    
+    dataMap = json.decode(response.body);
+    dataList = dataMap["usr"];
+    this.setState(() {
+        debugPrint(dataList.toString());
+    });
+    // return dataList;
+    }
+    
+    @override
+    void initState(){
+        this.getData();
+    }
+   
+  
 
   Future<void> signOut(BuildContext context) async {
     if (_auth.currentUser != null) {
@@ -30,50 +84,53 @@ class Profiles extends StatelessWidget {
 // class _ProfileState extends State<Profiles> {
   @override
   Widget build(BuildContext context) {
-    final List<String> words = ["Abu", "Chizy", "Dennies", "Plinio"];
+    final List<String> profiles = ["Hello", "Cool"];
+
+    // userData.forEach((name){
+    //     debugPrint(name["name"].toString());
+    //     profiles.add(name["name"]);
+    // });
+
+    // debugPrint(profiles.toString());
+    
     return Scaffold(
-      body: Column(
-        children: [
-          Container(
-            width: 600,
-            height: MediaQuery.of(context).size.height * .05,
-            decoration: const BoxDecoration(
-              shape: BoxShape.rectangle,
-              color: Color.fromRGBO(102, 155, 139, 1),
-            ),
-            child: RichText(
+        body: Column(children: [
+      Container(
+          width: 600,
+          height: MediaQuery.of(context).size.height * .25,
+          decoration: const BoxDecoration(
+            shape: BoxShape.rectangle,
+            color: Color.fromRGBO(102, 155, 139, 1),
+          ),
+          child: RichText(
               text: TextSpan(
-                style: DefaultTextStyle.of(context)
-                    .style
-                    .apply(fontSizeFactor: 1.5),
-                children: const <TextSpan>[
-                  TextSpan(
-                    text: 'Profiles',
-                    style: TextStyle(
-                        fontSize: 45,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.white,
-                        decoration: TextDecoration.none),
-                  ),
-                ],
-              ),
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 25.0),
-            child: Container(
+            style:
+                DefaultTextStyle.of(context).style.apply(fontSizeFactor: 1.5),
+            children: const <TextSpan>[
+              
+                TextSpan(
+                  text: 'Profiles',
+                  style: TextStyle(
+                      fontSize: 45,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.white,
+                      decoration: TextDecoration.none)),
+              
+              
+            ],
+          ))),
+      Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 25.0),
+          child: Container(
               decoration: const BoxDecoration(
-                color: Colors.white,
-              ),
-            ),
-          ),
-          Container(
-            height: 500,
-            width: 500,
-            child: ListView(
-              children: words
-                  .map(
-                    (data) => ListTile(
+            color: Colors.white,
+          ))),
+      Container(
+          height: 500,
+          width: 500,
+          child: ListView(
+            children: profiles
+                .map((data) => ListTile(
                       title: Align(
                         alignment: Alignment.center,
                         child: Text(
@@ -153,3 +210,4 @@ class Profiles extends StatelessWidget {
     );
   }
 }
+

@@ -37,19 +37,28 @@ class _CreateCardsState extends State<CreateCards> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SafeArea(
-        child: Center(
-          child: Column(
-            children: [
-              Container(
-                width: 600,
-                height: MediaQuery.of(context).size.height * .25,
-                decoration: const BoxDecoration(
-                  shape: BoxShape.circle,
-                  color: Color.fromRGBO(102, 155, 139, 1),
-                  // borderRadius: BorderRadius.only({Radius.zero, Radius.zero, 15.0, bottomRight = 15.0}),
-                ),
-              ),
+        body: SafeArea(
+            child: Center(
+                child: Column(children: [
+      // Container(
+      //       color: const Color.fromRGBO(241, 241, 248, 1),
+      //       width: 400,
+      //       height: 450,
+      //       child: CustomPaint(
+      //         painter: MyPainterTall(),
+      //       )),
+        Center(
+            child: Padding(
+                padding: const EdgeInsets.only(top: 50.0),
+                child: Container(
+                    width: 300,
+                    height: 300,
+                    decoration: const BoxDecoration(
+                      shape: BoxShape.rectangle,
+                      image: DecorationImage(
+                          image: AssetImage('images/cardio.png'),
+                          fit: BoxFit.fill),
+                    )))),
 
               Padding(
                 padding: const EdgeInsets.only(top: 50.0, right: 282),
