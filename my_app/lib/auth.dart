@@ -21,13 +21,15 @@ class Login extends StatelessWidget {
 
   void checkAuthentification(BuildContext context) async {
     _auth.authStateChanges().listen((user) {
-      if (user != null) {
-        Navigator.push(
-          context,
-          MaterialPageRoute(
-            builder: (context) => Profiles(),
-          ),
-        );
+      if (user == null) {
+        signInWithGoogle();
+        if (user != null) {
+          Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => Profiles(),
+              ));
+        }
       }
     });
   }
@@ -205,7 +207,7 @@ class Login extends StatelessWidget {
                             text: "Sign in with Google",
                             recognizer: TapGestureRecognizer()
                               ..onTap = () {
-                                signInWithGoogle();
+                                // signInWithGoogle();
                                 checkAuthentification(context);
                               }),
                       ),
