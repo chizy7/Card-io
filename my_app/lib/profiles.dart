@@ -32,6 +32,14 @@ class Profiles extends StatelessWidget {
   Widget build(BuildContext context) {
     final List<String> words = ["Abu", "Chizy", "Dennies", "Plinio"];
     return Scaffold(
+      appBar: AppBar(
+        actions: [
+          IconButton(
+            onPressed: () {},
+            icon: const Icon(Icons.add),
+          ),
+        ],
+      ),
       body: Column(
         children: [
           Container(
