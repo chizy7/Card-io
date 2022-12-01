@@ -14,22 +14,26 @@ class Login extends StatelessWidget {
   final TextEditingController _emailField = TextEditingController();
   final TextEditingController _passwordField = TextEditingController();
 
-  Future<User?> signInWithGoogle() async {
+  Future<User?> signInWithGoogle(BuildContext context) async {
     await Authentication().signInWithGoogle();
-    return null;
+    if (_auth.currentUser != null) {
+      Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => Profiles(),
+          ));
+    }
+    return _auth.currentUser;
   }
 
-  void checkAuthentification(BuildContext context) async {
+  void checkAuthentication(BuildContext context) {
     _auth.authStateChanges().listen((user) {
-      if (user == null) {
-        signInWithGoogle();
-        if (user != null) {
-          Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => Profiles(),
-              ));
-        }
+      if (_auth.currentUser != null) {
+        Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => Profiles(),
+            ));
       }
     });
   }
@@ -207,8 +211,7 @@ class Login extends StatelessWidget {
                             text: "Sign in with Google",
                             recognizer: TapGestureRecognizer()
                               ..onTap = () {
-                                // signInWithGoogle();
-                                checkAuthentification(context);
+                                signInWithGoogle(context);
                               }),
                       ),
                     ),
