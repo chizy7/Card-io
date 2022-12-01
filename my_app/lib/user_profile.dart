@@ -38,22 +38,25 @@ class ProfileScreen extends StatelessWidget {
                         color: Colors.white,
                         onPressed: () async {
                           Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => const CreateCards(),
-                              ));
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => const CreateCards(),
+                            ),
+                          );
                         },
                       ),
                       IconButton(
-                          icon: const Icon(Icons.account_circle),
-                          color: Colors.white,
-                          onPressed: () async {
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) => OtherProfiles(),
-                                ));
-                          }),
+                        icon: const Icon(Icons.account_circle),
+                        color: Colors.white,
+                        onPressed: () async {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => OtherProfiles(),
+                            ),
+                          );
+                        },
+                      ),
                     ],
                   ),
                   SizedBox(

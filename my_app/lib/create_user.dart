@@ -45,32 +45,39 @@ class _CreateUserState extends State<CreateUser> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: const Color.fromRGBO(241, 241, 248, 1),
-        body: SafeArea(
-            top: false,
-            child: Center(
-                child: Column(children: [
-              Stack(children: <Widget>[
-                Container(
+      backgroundColor: const Color.fromRGBO(241, 241, 248, 1),
+      body: SafeArea(
+        top: false,
+        child: Center(
+          child: Column(
+            children: [
+              Stack(
+                children: <Widget>[
+                  Container(
                     color: const Color.fromRGBO(241, 241, 248, 1),
                     width: 400,
                     height: 250,
                     child: CustomPaint(
                       painter: MyPainterShort(),
-                    )),
-                Center(
+                    ),
+                  ),
+                  Center(
                     child: Padding(
-                        padding: const EdgeInsets.only(top: 100.0),
-                        child: Container(
-                            width: 150,
-                            height: 150,
-                            decoration: const BoxDecoration(
-                              shape: BoxShape.circle,
-                              image: DecorationImage(
-                                  image: AssetImage('images/usericon.png'),
-                                  fit: BoxFit.fill),
-                            ))))
-              ]),
+                      padding: const EdgeInsets.only(top: 100.0),
+                      child: Container(
+                        width: 150,
+                        height: 150,
+                        decoration: const BoxDecoration(
+                          shape: BoxShape.circle,
+                          image: DecorationImage(
+                              image: AssetImage('images/usericon.png'),
+                              fit: BoxFit.fill),
+                        ),
+                      ),
+                    ),
+                  )
+                ],
+              ),
 
               Padding(
                 padding: const EdgeInsets.only(
@@ -82,12 +89,13 @@ class _CreateUserState extends State<CreateUser> {
                         .apply(fontSizeFactor: 1.5),
                     children: const <TextSpan>[
                       TextSpan(
-                          text: 'Name',
-                          style: TextStyle(
-                              fontSize: 25,
-                              fontWeight: FontWeight.bold,
-                              color: Color.fromRGBO(102, 155, 139, 1),
-                              decoration: TextDecoration.none)),
+                        text: 'Name',
+                        style: TextStyle(
+                            fontSize: 25,
+                            fontWeight: FontWeight.bold,
+                            color: Color.fromRGBO(102, 155, 139, 1),
+                            decoration: TextDecoration.none),
+                      ),
                     ],
                   ),
                 ),
@@ -123,12 +131,13 @@ class _CreateUserState extends State<CreateUser> {
                         .apply(fontSizeFactor: 1.5),
                     children: const <TextSpan>[
                       TextSpan(
-                          text: 'Bio',
-                          style: TextStyle(
-                              fontSize: 25,
-                              fontWeight: FontWeight.bold,
-                              color: Color.fromRGBO(102, 155, 139, 1),
-                              decoration: TextDecoration.none)),
+                        text: 'Bio',
+                        style: TextStyle(
+                            fontSize: 25,
+                            fontWeight: FontWeight.bold,
+                            color: Color.fromRGBO(102, 155, 139, 1),
+                            decoration: TextDecoration.none),
+                      ),
                     ],
                   ),
                 ),
@@ -180,12 +189,13 @@ class _CreateUserState extends State<CreateUser> {
                         .apply(fontSizeFactor: 1.5),
                     children: const <TextSpan>[
                       TextSpan(
-                          text: 'Favorite Topic',
-                          style: TextStyle(
-                              fontSize: 25,
-                              fontWeight: FontWeight.bold,
-                              color: Color.fromRGBO(102, 155, 139, 1),
-                              decoration: TextDecoration.none)),
+                        text: 'Favorite Topic',
+                        style: TextStyle(
+                            fontSize: 25,
+                            fontWeight: FontWeight.bold,
+                            color: Color.fromRGBO(102, 155, 139, 1),
+                            decoration: TextDecoration.none),
+                      ),
                     ],
                   ),
                 ),
@@ -221,12 +231,20 @@ class _CreateUserState extends State<CreateUser> {
                     color: const Color.fromRGBO(102, 155, 139, 1),
                   ),
                   child: MaterialButton(
-                      onPressed: () => {},
-                      child: const Text("Submit",
-                          style: TextStyle(
-                              color: Color.fromRGBO(244, 244, 249, 1)))),
+                    onPressed: () => {},
+                    child: const Text(
+                      "Submit",
+                      style: TextStyle(
+                        color: Color.fromRGBO(244, 244, 249, 1),
+                      ),
+                    ),
+                  ),
                 ),
               ),
-            ]))));
+            ],
+          ),
+        ),
+      ),
+    );
   }
 }
