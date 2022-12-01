@@ -58,11 +58,11 @@ class Login extends StatelessWidget {
                       padding: const EdgeInsets.only(top: 50.0),
                       child: Container(
                           width: 300,
-                          height: 381,
+                          height: 300,
                           decoration: const BoxDecoration(
                             shape: BoxShape.rectangle,
                             image: DecorationImage(
-                                image: AssetImage('images/leaflet.png'),
+                                image: AssetImage('images/cardio.png'),
                                 fit: BoxFit.fill),
                           ))))
             ]),

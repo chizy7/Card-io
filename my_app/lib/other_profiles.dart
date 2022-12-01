@@ -3,10 +3,9 @@ import './create_user.dart';
 import 'auth.dart';
 import 'google_auth.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'create_cards.dart';
 
-class Profiles extends StatelessWidget {
-  Profiles({super.key});
+class OtherProfiles extends StatelessWidget {
+  OtherProfiles({super.key});
 
   final FirebaseAuth _auth = FirebaseAuth.instance;
 
@@ -87,25 +86,6 @@ class Profiles extends StatelessWidget {
       Container(
         height: 100,
         width: 500,
-        child: TextButton(
-          style: ButtonStyle(
-            foregroundColor: MaterialStateProperty.all<Color>(Colors.blue),
-          ),
-          onPressed: () async {
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => const CreateCards(),
-              ),
-            );
-          },
-          child: const Text(
-            'Add Your Own Profile',
-            style: TextStyle(
-              fontSize: 20,
-            ),
-          ),
-        ),
       ),
       Padding(
         padding: const EdgeInsets.only(top: 15.0),
