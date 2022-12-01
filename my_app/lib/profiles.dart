@@ -84,7 +84,7 @@ class Profiles extends StatelessWidget {
 // class _ProfileState extends State<Profiles> {
   @override
   Widget build(BuildContext context) {
-    final List<String> profiles = ["Hello", "Cool"];
+    final List<String> profiles = ["Abu", "Dennies", "Plinio", "Chizaram"];
 
     // userData.forEach((name){
     //     debugPrint(name["name"].toString());

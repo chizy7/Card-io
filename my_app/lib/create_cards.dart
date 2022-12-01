@@ -51,8 +51,8 @@ class _CreateCardsState extends State<CreateCards> {
             child: Padding(
                 padding: const EdgeInsets.only(top: 50.0),
                 child: Container(
-                    width: 300,
-                    height: 300,
+                    width: 200,
+                    height: 200,
                     decoration: const BoxDecoration(
                       shape: BoxShape.rectangle,
                       image: DecorationImage(
