@@ -1,18 +1,5 @@
 import 'package:flutter/material.dart';
 
-// void data() async {
-//   var settings = new ConnectionSettings(
-//       host: 'localhost',
-//       port: 3306,
-//       user: 'root',
-//       password: 'KFc}~<]{/&Sm,E+r',
-//       db: 'flutter_app');
-//   var conn = await MySqlConnection.connect(settings);
-//   var result = await conn.query(
-//       'insert into user (name, email, bio, favorite_topic, id) values (?, ?, ?, ?, ?)',
-//       ['Bob', 'bob@bob.com', 'test test', 'sport', 1]);
-// }
-
 class CreateUser extends StatefulWidget {
   const CreateUser({super.key});
   State<CreateUser> createState() => _CreateUserState();
