@@ -1,92 +1,146 @@
-# group-projects-two-team-5
-
-
-
-## Getting started
-
-To make it easy for you to get started with GitLab, here's a list of recommended next steps.
-
-Already a pro? Just edit this README.md and make it your own. Want to make it easy? [Use the template at the bottom](#editing-this-readme)!
-
-## Add your files
-
-- [ ] [Create](https://docs.gitlab.com/ee/user/project/repository/web_editor.html#create-a-file) or [upload](https://docs.gitlab.com/ee/user/project/repository/web_editor.html#upload-a-file) files
-- [ ] [Add files using the command line](https://docs.gitlab.com/ee/gitlab-basics/add-file.html#add-a-file-using-the-command-line) or push an existing Git repository with the following command:
-
-```
-cd existing_repo
-git remote add origin https://gitlab.com/dartapps/hunter-flutter/group-projects-two-team-5.git
-git branch -M main
-git push -uf origin main
-```
-
-## Integrate with your tools
-
-- [ ] [Set up project integrations](https://gitlab.com/dartapps/hunter-flutter/group-projects-two-team-5/-/settings/integrations)
-
-## Collaborate with your team
-
-- [ ] [Invite team members and collaborators](https://docs.gitlab.com/ee/user/project/members/)
-- [ ] [Create a new merge request](https://docs.gitlab.com/ee/user/project/merge_requests/creating_merge_requests.html)
-- [ ] [Automatically close issues from merge requests](https://docs.gitlab.com/ee/user/project/issues/managing_issues.html#closing-issues-automatically)
-- [ ] [Enable merge request approvals](https://docs.gitlab.com/ee/user/project/merge_requests/approvals/)
-- [ ] [Automatically merge when pipeline succeeds](https://docs.gitlab.com/ee/user/project/merge_requests/merge_when_pipeline_succeeds.html)
-
-## Test and Deploy
-
-Use the built-in continuous integration in GitLab.
-
-- [ ] [Get started with GitLab CI/CD](https://docs.gitlab.com/ee/ci/quick_start/index.html)
-- [ ] [Analyze your code for known vulnerabilities with Static Application Security Testing(SAST)](https://docs.gitlab.com/ee/user/application_security/sast/)
-- [ ] [Deploy to Kubernetes, Amazon EC2, or Amazon ECS using Auto Deploy](https://docs.gitlab.com/ee/topics/autodevops/requirements.html)
-- [ ] [Use pull-based deployments for improved Kubernetes management](https://docs.gitlab.com/ee/user/clusters/agent/)
-- [ ] [Set up protected environments](https://docs.gitlab.com/ee/ci/environments/protected_environments.html)
-
-***
-
-# Editing this README
-
-When you're ready to make this README your own, just edit this file and use the handy template below (or feel free to structure it however you want - this is just a starting point!). Thank you to [makeareadme.com](https://www.makeareadme.com/) for this template.
-
-## Suggestions for a good README
-Every project is different, so consider which of these sections apply to yours. The sections used in the template are suggestions for most open source projects. Also keep in mind that while a README can be too long and detailed, too long is better than too short. If you think your README is too long, consider utilizing another form of documentation rather than cutting out information.
-
-## Name
-Choose a self-explaining name for your project.
+# Leaflet
 
 ## Description
-Let people know what your project can do specifically. Provide context and add a link to any reference visitors might be unfamiliar with. A list of Features or a Background subsection can also be added here. If there are alternatives to your project, this is a good place to list differentiating factors.
 
-## Badges
-On some READMEs, you may see small images that convey metadata, such as whether or not all the tests are passing for the project. You can use Shields to add some to your README. Many services also have instructions for adding a badge.
+Leaflet is the project for the group 5 for Flutter.
 
-## Visuals
-Depending on what you are making, it can be a good idea to include screenshots or even a video (you'll frequently see GIFs rather than actual videos). Tools like ttygif can help, but check out Asciinema for a more sophisticated method.
+## User Stories
+
+### REQUIRED
+
+- [x] Main Welcome Screen (Can be a sign in screen)
+- [x] Google and manual signup/sign in flow.
+- [x] After login, the screen should present a list of members in your group.
+- [x] The logged in user should be able to add their name to the list by clicking "add myself" which grabs the user info from their social signup and/or the database.
+- [x] The user can click on anyone of the current group members which should navigate to their individual group member page with a bio and picture(or avatar likeness if preferred).
+- [x] The dimensions for profile pictures and sized boxes for the bio content should be consistent across all group members.
+- [x] Use the Touch Gesture to add an action like tapping or dragging.
+- [x] Must use Firebase Authentication to register your users
+- [x] Must use a Database (GCP Cloud SQL is Fine).
+
+## Visuals (PowerPoint Presentation and Walkthrough GIFs)
+
+### PowerPoint Presentation Link
+
+Slides: Here is the link to [Leaflet slides](https://docs.google.com/presentation/d/14OTapWjVMH4f5b8AnNTiTIiGeBpipW3vTCwoLfNAgys/edit?usp=sharing) for this project.
+
+### Video Walkthrough
+
+Here's walkthroughs of implemented user stories:
+
+<p float="left">
+ <img src='https://i.imgur.com/X2YIxKs.gif' width=250 alt='Fall #1' />
+ <img src='https://i.imgur.com/HCb72bw.gif' width=250 alt='Fall #2' />
+ <img src='https://i.imgur.com/QH55yfG.gif' width=250 alt='Fall #3' />
+</p>
+
 
 ## Installation
-Within a particular ecosystem, there may be a common way of installing things, such as using Yarn, NuGet, or Homebrew. However, consider the possibility that whoever is reading your README is a novice and would like more guidance. Listing specific steps helps remove ambiguity and gets people to using your project as quickly as possible. If it only runs in a specific context like a particular programming language version or operating system or has dependencies that have to be installed manually, also add a Requirements subsection.
+
+The first step is to [Install Flutter](https://flutter.dev/get-started/) for your operating system.
+
+### Installation in Windows
+
+**Step 1** - Assuming you have downloaded and installed the latest Flutter SDK for windows system.
+
+**Step 2** - Unzip the zip archive in a folder, say C:\flutter\
+
+**Step 3** - Update the system path to include flutter bin directory.
+
+**Step 4** - Flutter provides a tool, flutter doctor to check that all requirement of flutter development is met.
+
+`flutter doctor`
+
+**Step 5** - Running the above command will analyze the system and show its report as shown below
+
+```
+Doctor summary (to see all details, run flutter doctor -v):
+[√] Flutter (Channel stable, v1.2.1, on Microsoft Windows [Version
+10.0.17134.706], locale en-US)
+[√] Android toolchain - develop for Android devices (Android SDK version
+28.0.3)
+[√] Android Studio (version 3.2)
+[√] VS Code, 64-bit edition (version 1.29.1)
+[!] Connected device
+! No devices available
+! Doctor found issues in 1 category.
+```
+
+The report above says that all development tools are available but the device is not connected. We can fix this by connecting an android device through USB or starting an android emulator.
+
+**Step 6** - Install the latest Android SDK, if reported by flutter doctor
+
+**Step 7** - Install the latest Android Studio, if reported by flutter doctor
+
+**Step 8** - Start an android emulator or connect a real android device to the system
+
+**Step 9** - Install Flutter and Dart plugin for Android Studio. It provides startup template to create new Flutter application, an option to run and debug Flutter application in the Android studio itself, etc.,
+
+- Open Android Studio.
+- Click File → Settings → Plugins.
+- Select the Flutter plugin and click Install.
+- Click Yes when prompted to install the Dart plugin.
+- Restart Android studio.
+
+### Installing in MacOS
+
+To install Flutter on MacOS, you will have to follow the following steps below.
+
+**Step 1** - Assuming you have installed the latest Flutter SDK for MacOS.
+
+**Step 2** - Unzip the zip archive in a folder, say /path/to/flutter
+
+**Step 3** - Update the system path to include flutter bin directory (in ~/.bashrc file).
+
+`> export PATH = "$PATH:/path/to/flutter/bin"`
+
+**Step 4** - Enable the updated path in the current session using below command and then verify it as well.
+
+```
+source ~/.bashrc
+source $HOME/.bash_profile
+echo $PATH
+```
+
+Flutter provides a tool, flutter doctor to check that all the requirement of flutter development is met. It is similar to the Windows counterpath.
+
+**Step 5** - Install latest XCode, if reported by flutter doctor
+
+**Step 6** - Install latest Android SDK, if reported by flutter doctor
+
+**Step 7** - Install latest Android Studio, if reported by flutter doctor
+
+**Step 8** - Start an android emulator or connect to a real android device to the system to develop android application.
+
+**Step 9** - Open iOS simulator or connect a real iPhone device to the system to develop iOS application.
+
+**Step 10** - Install Flutter and Dart plugin for Android Studio. It provides the startup template to create a new Flutter application, option to run and debug Flutter application in the Android studio itself, etc.
+
+- Open Android Studio
+- Click **Preferences → Plugins**
+- Select the Flutter plugin and click install
+- Click Yes when prompted to install the Dart plugin
+- Restart Android studio.
 
 ## Usage
-Use examples liberally, and show the expected output if you can. It's helpful to have inline the smallest example of usage that you can demonstrate, while providing links to more sophisticated examples if they are too long to reasonably include in the README.
 
-## Support
-Tell people where they can go to for help. It can be any combination of an issue tracker, a chat room, an email address, etc.
+Assuming you have installed flutter and your system passes all `flutter doctor` tests. You can do a git clone and to run the project locally, you can open up the project in visual studio. Since this is only for flutter web, you can open up your terminal in VS Code and run the command below to launch in chrome.
 
-## Roadmap
-If you have ideas for releases in the future, it is a good idea to list them in the README.
-
-## Contributing
-State if you are open to contributions and what your requirements are for accepting them.
-
-For people who want to make changes to your project, it's helpful to have some documentation on how to get started. Perhaps there is a script that they should run or some environment variables that they need to set. Make these steps explicit. These instructions could also be useful to your future self.
-
-You can also document commands to lint the code or run tests. These steps help to ensure high code quality and reduce the likelihood that the changes inadvertently break something. Having instructions for running tests is especially helpful if it requires external setup, such as starting a Selenium server for testing in a browser.
+`flutter run -d chrome`
 
 ## Authors and acknowledgment
-Show your appreciation to those who have contributed to the project.
+
+- Plinio Cabrera
+- Abu Butt
+- Dennis Anwar
+- Chizaram Chibueze
+
+## Documentation
+
+- [Install Flutter](https://flutter.dev/get-started/)
+- [Flutter documentation](https://docs.flutter.dev/)
+- [Development wiki](https://github.com/flutter/flutter/wiki)
 
 ## License
-For open source projects, say how it is licensed.
 
-## Project status
-If you have run out of energy or time for your project, put a note at the top of the README saying that development has slowed down or stopped completely. Someone may choose to fork your project or volunteer to step in as a maintainer or owner, allowing your project to keep going. You can also make an explicit request for maintainers.
+License
