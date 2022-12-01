@@ -1,8 +1,8 @@
-# Leaflet
+# CARD-iO
 
 ## Description
 
-Leaflet is the project for the group 5 for Flutter.
+CARD-iO is the project for the group 5 for Flutter.
 
 ## User Stories
 
@@ -22,7 +22,7 @@ Leaflet is the project for the group 5 for Flutter.
 
 ### PowerPoint Presentation Link
 
-Slides: Here is the link to [Leaflet slides](https://docs.google.com/presentation/d/14OTapWjVMH4f5b8AnNTiTIiGeBpipW3vTCwoLfNAgys/edit?usp=sharing) for this project.
+Slides: Here is the link to [CARD-iO slides](https://docs.google.com/presentation/d/14OTapWjVMH4f5b8AnNTiTIiGeBpipW3vTCwoLfNAgys/edit?usp=sharing) for this project.
 
 ### Video Walkthrough
 
