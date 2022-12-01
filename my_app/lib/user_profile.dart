@@ -2,22 +2,6 @@ import 'package:flutter/material.dart';
 import './create_cards.dart';
 import './other_profiles.dart';
 
-class UserData {
-  final int usrId;
-  final String email;
-  final String name;
-  final String bio;
-  final String fav_topic;
-  
-  UserData({
-    this.usrId,
-    this.email,
-    this.name,
-    this.bio,
-    this.fav_topic
-  });
-}
-
 class ProfileScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
