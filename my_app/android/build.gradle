@@ -33,6 +33,6 @@ task clean(type: Delete) {
     delete rootProject.buildDir
 }
 
-defaultConfig {
-    minSdkVersion localProperties.getProperty('flutter.minSdkVersion').toInteger()
-}      
+// defaultConfig {
+//     minSdkVersion localProperties.getProperty('flutter.minSdkVersion').toInteger()
+// }      

@@ -148,28 +148,31 @@ class _ProfileState extends State<Profiles> {
             width: 300,
             child: ListView(
               children: profiles
-                  .map((data) => ListTile(
-                        title: Align(
-                          alignment: Alignment.center,
-                          child: Text(
-                            data,
-                            style: const TextStyle(
-                              fontWeight: FontWeight.bold,
-                              fontSize: 30,
-                              color: Color.fromRGBO(241, 241, 248, 1),
+                  .map(
+                    (data) => ListTile(
+                      title: Align(
+                        alignment: Alignment.center,
+                        child: Text(
+                          data,
+                          style: const TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 30,
+                            color: Color.fromRGBO(241, 241, 248, 1),
+                          ),
+                        ),
+                      ),
+                      onTap: () => {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => ProfileScreen(
+                              userprofile: data,
                             ),
                           ),
                         ),
-                        onTap: () => {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => ProfileScreen(
-                                      userprofile: data,
-                                    )),
-                          ),
-                        },
-                      ))
+                      },
+                    ),
+                  )
                   .toList(),
             ),
           ),

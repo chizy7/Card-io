@@ -128,23 +128,26 @@ class _CreateUserState extends State<CreateUser> {
                     borderRadius: BorderRadius.circular(12),
                   ),
                   child: TextFormField(
-                      controller: _nameField,
-                      decoration: const InputDecoration(
-                        enabledBorder: OutlineInputBorder(
-                            borderSide: BorderSide(
-                                width: 1,
-                                color: Color.fromRGBO(102, 155, 139, 1))),
-                        filled: true,
-                        fillColor: Colors.white,
-                        hintText: "Enter your first name",
-                        hintStyle: TextStyle(
-                          color: Colors.black,
-                        ),
-                        labelText: "First Name",
-                        labelStyle: TextStyle(
+                    controller: _nameField,
+                    decoration: const InputDecoration(
+                      enabledBorder: OutlineInputBorder(
+                        borderSide: BorderSide(
+                          width: 1,
                           color: Color.fromRGBO(102, 155, 139, 1),
                         ),
-                      )),
+                      ),
+                      filled: true,
+                      fillColor: Colors.white,
+                      hintText: "Enter your first name",
+                      hintStyle: TextStyle(
+                        color: Colors.black,
+                      ),
+                      labelText: "First Name",
+                      labelStyle: TextStyle(
+                        color: Color.fromRGBO(102, 155, 139, 1),
+                      ),
+                    ),
+                  ),
                 ),
               ),
 
@@ -182,23 +185,26 @@ class _CreateUserState extends State<CreateUser> {
                     height: 150,
 
                     child: TextFormField(
-                        controller: _bioField,
-                        decoration: const InputDecoration(
-                          enabledBorder: OutlineInputBorder(
-                              borderSide: BorderSide(
-                                  width: 1,
-                                  color: Color.fromRGBO(102, 155, 139, 1))),
-                          filled: true,
-                          fillColor: Colors.white,
-                          hintText: "Enter your first name",
-                          hintStyle: TextStyle(
-                            color: Colors.black,
-                          ),
-                          labelText: "First Name",
-                          labelStyle: TextStyle(
+                      controller: _bioField,
+                      decoration: const InputDecoration(
+                        enabledBorder: OutlineInputBorder(
+                          borderSide: BorderSide(
+                            width: 1,
                             color: Color.fromRGBO(102, 155, 139, 1),
                           ),
-                        )),
+                        ),
+                        filled: true,
+                        fillColor: Colors.white,
+                        hintText: "Enter your first name",
+                        hintStyle: TextStyle(
+                          color: Colors.black,
+                        ),
+                        labelText: "First Name",
+                        labelStyle: TextStyle(
+                          color: Color.fromRGBO(102, 155, 139, 1),
+                        ),
+                      ),
+                    ),
 
                     // child: TextField (
                     //     keyboardType: TextInputType.multiline,
