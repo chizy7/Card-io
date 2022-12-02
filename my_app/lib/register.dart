@@ -22,7 +22,6 @@ Future<http.Response> postUser(email, name) {
       'Content-Type': 'application/json; charset=UTF-8',
     },
     body: jsonEncode(<String, String>{
-      'usrID': '',
       'email': '$email',
       'name': '$name',
       'bio': '',
@@ -201,10 +200,12 @@ class _RegisterState extends State<Register> {
                               'last': _lastname.text,
                               'email': _emailField.text,
                             });
+
                             setState(() {
                               name = _firstname.text;
                               email = _emailField.text;
                             });
+
                             postUser(email, name);
                             Navigator.push(
                                 context,

@@ -16,13 +16,15 @@ Future<http.Response> postCard(topic, word, definition) {
     headers: <String, String>{
       'Content-Type': 'application/json; charset=UTF-8',
     },
-    body: jsonEncode(<String, String>{
-      'id': '1',
-      'topic': '$topic',
-      'word': '$word',
-      'definition': '$definition',
-      'usrID': '2',
-    }),
+    body: jsonEncode(
+      <String, String>{
+        'id': '',
+        'topic': '$topic',
+        'word': '$word',
+        'definition': '$definition',
+        'usrID': '',
+      },
+    ),
   );
 }
 
@@ -37,20 +39,21 @@ class _CreateCardsState extends State<CreateCards> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: SafeArea(
-            child: Center(
-                child: Column(children: [
-      // Container(
-      //       color: const Color.fromRGBO(241, 241, 248, 1),
-      //       width: 400,
-      //       height: 450,
-      //       child: CustomPaint(
-      //         painter: MyPainterTall(),
-      //       )),
-        Center(
-            child: Padding(
-                padding: const EdgeInsets.only(top: 50.0),
-                child: Container(
+      body: SafeArea(
+        child: Center(
+          child: Column(
+            children: [
+              // Container(
+              //       color: const Color.fromRGBO(241, 241, 248, 1),
+              //       width: 400,
+              //       height: 450,
+              //       child: CustomPaint(
+              //         painter: MyPainterTall(),
+              //       )),
+              Center(
+                child: Padding(
+                  padding: const EdgeInsets.only(top: 50.0),
+                  child: Container(
                     width: 200,
                     height: 200,
                     decoration: const BoxDecoration(
@@ -58,7 +61,10 @@ class _CreateCardsState extends State<CreateCards> {
                       image: DecorationImage(
                           image: AssetImage('images/cardio.png'),
                           fit: BoxFit.fill),
-                    )))),
+                    ),
+                  ),
+                ),
+              ),
 
               Padding(
                 padding: const EdgeInsets.only(top: 50.0, right: 282),

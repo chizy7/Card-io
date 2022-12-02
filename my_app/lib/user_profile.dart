@@ -1,8 +1,34 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
+import 'package:my_app/profiles.dart';
 import './create_cards.dart';
 import './other_profiles.dart';
+import 'package:http/http.dart' as http;
 
-class ProfileScreen extends StatelessWidget {
+class ProfileScreen extends StatefulWidget {
+  ProfileScreen({@required this.userprofile});
+  Map dataMap = {};
+  List dataList = [];
+  var userprofile;
+
+  Future<void> getData() async {
+    //replace your restFull API here.
+    String url =
+        "https://us-central1-group-project-2-16d40.cloudfunctions.net/getData/allUsers";
+    final response = await http.get(Uri.parse(url));
+
+    dataMap = json.decode(response.body);
+
+    dataList = dataMap["usr"];
+  }
+
+  @override
+  State<ProfileScreen> createState() => _ProfileScreen();
+  var name;
+}
+
+class _ProfileScreen extends State<ProfileScreen> {
   @override
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
@@ -52,7 +78,7 @@ class ProfileScreen extends StatelessWidget {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                              builder: (context) => OtherProfiles(),
+                              builder: (context) => Profiles(),
                             ),
                           );
                         },
@@ -63,7 +89,7 @@ class ProfileScreen extends StatelessWidget {
                     height: 20,
                   ),
                   Text(
-                    'My Profile',
+                    'text',
                     textAlign: TextAlign.center,
                     style: TextStyle(
                       color: Colors.white,

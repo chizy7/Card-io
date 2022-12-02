@@ -1,4 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:my_app/user_profile.dart';
+import 'package:http/http.dart' as http;
+
+void postUser(
+  String name,
+  String bio,
+  String fav_topic,
+) async {
+  var url = Uri.https('example.com', 'whatsit/create');
+  var request = {'usrID': ''};
+  var response =
+      await http.post(url, body: {'name': 'doodle', 'color': 'blue'});
+}
 
 class CreateUser extends StatefulWidget {
   const CreateUser({super.key});
@@ -41,6 +54,10 @@ class _CreateUserState extends State<CreateUser> {
   final TextEditingController _nameField = TextEditingController();
   final TextEditingController _bioField = TextEditingController();
   final TextEditingController _topicField = TextEditingController();
+
+  var name;
+  var bio;
+  var topic;
 
   @override
   Widget build(BuildContext context) {
@@ -110,15 +127,24 @@ class _CreateUserState extends State<CreateUser> {
                     border: Border.all(color: Colors.grey),
                     borderRadius: BorderRadius.circular(12),
                   ),
-                  child: const Padding(
-                    padding: EdgeInsets.only(left: 15.0),
-                    child: TextField(
-                      decoration: InputDecoration(
-                        border: InputBorder.none,
-                        hintText: 'Name',
-                      ),
-                    ),
-                  ),
+                  child: TextFormField(
+                      controller: _nameField,
+                      decoration: const InputDecoration(
+                        enabledBorder: OutlineInputBorder(
+                            borderSide: BorderSide(
+                                width: 1,
+                                color: Color.fromRGBO(102, 155, 139, 1))),
+                        filled: true,
+                        fillColor: Colors.white,
+                        hintText: "Enter your first name",
+                        hintStyle: TextStyle(
+                          color: Colors.black,
+                        ),
+                        labelText: "First Name",
+                        labelStyle: TextStyle(
+                          color: Color.fromRGBO(102, 155, 139, 1),
+                        ),
+                      )),
                 ),
               ),
 
@@ -152,20 +178,27 @@ class _CreateUserState extends State<CreateUser> {
                     border: Border.all(color: Colors.grey),
                     borderRadius: BorderRadius.circular(12),
                   ),
-                  child: const SizedBox(
+                  child: SizedBox(
                     height: 150,
 
-                    child: Padding(
-                      padding: EdgeInsets.only(left: 15.0),
-                      child: TextField(
-                        keyboardType: TextInputType.multiline,
-                        maxLines: null,
-                        decoration: InputDecoration(
-                          border: InputBorder.none,
-                          hintText: 'Give a brief description of yourself',
-                        ),
-                      ),
-                    ),
+                    child: TextFormField(
+                        controller: _bioField,
+                        decoration: const InputDecoration(
+                          enabledBorder: OutlineInputBorder(
+                              borderSide: BorderSide(
+                                  width: 1,
+                                  color: Color.fromRGBO(102, 155, 139, 1))),
+                          filled: true,
+                          fillColor: Colors.white,
+                          hintText: "Enter your first name",
+                          hintStyle: TextStyle(
+                            color: Colors.black,
+                          ),
+                          labelText: "First Name",
+                          labelStyle: TextStyle(
+                            color: Color.fromRGBO(102, 155, 139, 1),
+                          ),
+                        )),
 
                     // child: TextField (
                     //     keyboardType: TextInputType.multiline,
@@ -209,15 +242,24 @@ class _CreateUserState extends State<CreateUser> {
                     border: Border.all(color: Colors.grey),
                     borderRadius: BorderRadius.circular(12),
                   ),
-                  child: const Padding(
-                    padding: EdgeInsets.only(left: 15.0),
-                    child: TextField(
-                      decoration: InputDecoration(
-                        border: InputBorder.none,
-                        hintText: 'Fav Topic',
-                      ),
-                    ),
-                  ),
+                  child: TextFormField(
+                      controller: _topicField,
+                      decoration: const InputDecoration(
+                        enabledBorder: OutlineInputBorder(
+                            borderSide: BorderSide(
+                                width: 1,
+                                color: Color.fromRGBO(102, 155, 139, 1))),
+                        filled: true,
+                        fillColor: Colors.white,
+                        hintText: "Enter your first name",
+                        hintStyle: TextStyle(
+                          color: Colors.black,
+                        ),
+                        labelText: "First Name",
+                        labelStyle: TextStyle(
+                          color: Color.fromRGBO(102, 155, 139, 1),
+                        ),
+                      )),
                 ),
               ),
 
@@ -231,7 +273,13 @@ class _CreateUserState extends State<CreateUser> {
                     color: const Color.fromRGBO(102, 155, 139, 1),
                   ),
                   child: MaterialButton(
-                    onPressed: () => {},
+                    onPressed: () => {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => ProfileScreen(),
+                          ))
+                    },
                     child: const Text(
                       "Submit",
                       style: TextStyle(

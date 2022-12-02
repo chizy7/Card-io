@@ -1,4 +1,8 @@
+import 'dart:core';
+
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:my_app/user_profile.dart';
 import './create_user.dart';
 import 'auth.dart';
 import 'google_auth.dart';
@@ -9,14 +13,13 @@ import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'dart:core';
 
-
 // class UserData {
 //   final int usrId;
 //   final String email;
 //   final String name;
 //   final String bio;
 //   final String fav_topic;
-  
+
 //   UserData({
 //     this.usrId,
 //     this.email,
@@ -26,43 +29,66 @@ import 'dart:core';
 //   });
 // }
 
-
 // Future getRequest() async {
 //     //replace your restFull API here.
 //     String url = "https://us-central1-group-project-2-16d40.cloudfunctions.net/getData/allUsers";
 //     final response = await http.get(Uri.parse(url));
-  
+
 //     debugPrint(response.body);
-   
+
 //   }
 
+class MyPainterwhite extends CustomPainter {
+  @override
+  void paint(Canvas canvas, Size size) {
+    Paint paint = Paint()
+      ..color = Color.fromRGBO(241, 241, 248, 1).withOpacity(1);
 
-class Profiles extends StatelessWidget {
+    final center = Offset(size.width / 2, size.height / 4.5);
+    canvas.drawCircle(center, size.width / 1.8, paint);
+  }
+
+  @override
+  bool shouldRepaint(CustomPainter old) {
+    return true;
+  }
+}
+
+class Profiles extends StatefulWidget {
   Profiles({super.key});
+
   get setState => null;
 
-  final FirebaseAuth _auth = FirebaseAuth.instance;
-    Map dataMap = {};
-    List dataList = [];
-    Future<void> getData() async {
+  @override
+  State<Profiles> createState() => _ProfileState();
+}
+
+class _ProfileState extends State<Profiles> {
+  Map dataMap = {};
+  List dataList = [];
+
+  Future<void> getData() async {
     //replace your restFull API here.
-    String url = "https://us-central1-group-project-2-16d40.cloudfunctions.net/getData/allUsers";
+    String url =
+        "https://us-central1-group-project-2-16d40.cloudfunctions.net/getData/allUsers";
     final response = await http.get(Uri.parse(url));
-    
+
     dataMap = json.decode(response.body);
-    dataList = dataMap["usr"];
-    this.setState(() {
-        debugPrint(dataList.toString());
+
+    setState(() {
+      dataList = dataMap["usr"];
     });
-    // return dataList;
-    }
-    
-    @override
-    void initState(){
-        this.getData();
-    }
-   
-  
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    getData();
+
+    // Or call your function here
+  }
+
+  final FirebaseAuth _auth = FirebaseAuth.instance;
 
   Future<void> signOut(BuildContext context) async {
     if (_auth.currentUser != null) {
@@ -77,86 +103,73 @@ class Profiles extends StatelessWidget {
     }
   }
 
-//   @override
-//   State<Profiles> createState() => _ProfileState();
-// }
-
-// class _ProfileState extends State<Profiles> {
   @override
   Widget build(BuildContext context) {
-    final List<String> profiles = ["Abu", "Dennies", "Plinio", "Chizaram"];
+    final List<String> profiles = [];
+    var profilelength = profiles.length;
 
-    // userData.forEach((name){
-    //     debugPrint(name["name"].toString());
-    //     profiles.add(name["name"]);
-    // });
+    for (var person in dataList) {
+      profiles.add(person["name"]);
+    }
 
-    // debugPrint(profiles.toString());
-    
     return Scaffold(
-        body: Column(children: [
-      Container(
-          width: 600,
-          height: MediaQuery.of(context).size.height * .25,
-          decoration: const BoxDecoration(
-            shape: BoxShape.rectangle,
-            color: Color.fromRGBO(102, 155, 139, 1),
-          ),
-          child: RichText(
-              text: TextSpan(
-            style:
-                DefaultTextStyle.of(context).style.apply(fontSizeFactor: 1.5),
-            children: const <TextSpan>[
-              
-                TextSpan(
-                  text: 'Profiles',
-                  style: TextStyle(
-                      fontSize: 45,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.white,
-                      decoration: TextDecoration.none)),
-              
-              
+      backgroundColor: const Color.fromRGBO(102, 155, 139, 1),
+      body: Column(
+        children: [
+          Stack(
+            children: <Widget>[
+              Container(
+                color: const Color.fromRGBO(241, 241, 248, 1),
+                width: 400,
+                height: 250,
+                child: CustomPaint(
+                  painter: MyPainterwhite(),
+                ),
+              ),
+              Center(
+                child: Padding(
+                  padding: const EdgeInsets.only(top: 100.0),
+                  child: Container(
+                    width: 150,
+                    height: 150,
+                    decoration: const BoxDecoration(
+                      shape: BoxShape.circle,
+                      image: DecorationImage(
+                          image: AssetImage('images/cardio.png'),
+                          fit: BoxFit.fill),
+                    ),
+                  ),
+                ),
+              )
             ],
-          ))),
-      Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 25.0),
-          child: Container(
-              decoration: const BoxDecoration(
-            color: Colors.white,
-          ))),
-      Container(
-          height: 500,
-          width: 500,
-          child: ListView(
-            children: profiles
-                .map((data) => ListTile(
-                      title: Align(
-                        alignment: Alignment.center,
-                        child: Text(
-                          data,
-                          style: const TextStyle(
-                            fontWeight: FontWeight.bold,
-                            fontSize: 30,
-                            color: Color(0xff11b719),
-                          ),
-                        ),
-                      ),
-                      onTap: () => ScaffoldMessenger.of(context).showSnackBar(
-                        SnackBar(
-                          content: Text(
-                            "$data",
+          ),
+          Container(
+            height: 300,
+            width: 300,
+            child: ListView(
+              children: profiles
+                  .map((data) => ListTile(
+                        title: Align(
+                          alignment: Alignment.center,
+                          child: Text(
+                            data,
                             style: const TextStyle(
                               fontWeight: FontWeight.bold,
-                              fontSize: 14,
-                              color: Color(0xff11b719),
+                              fontSize: 30,
+                              color: Color.fromRGBO(241, 241, 248, 1),
                             ),
                           ),
-                          duration: const Duration(seconds: 2),
                         ),
-                      ),
-                    ),
-                  )
+                        onTap: () => {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => ProfileScreen(
+                                      userprofile: data,
+                                    )),
+                          ),
+                        },
+                      ))
                   .toList(),
             ),
           ),
@@ -171,13 +184,15 @@ class Profiles extends StatelessWidget {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => const CreateCards(),
+                    builder: (context) => const CreateUser(),
                   ),
                 );
               },
               child: const Text(
                 'Add Your Own Profile',
                 style: TextStyle(
+                  decoration: TextDecoration.underline,
+                  color: Color.fromRGBO(241, 241, 248, 1),
                   fontSize: 20,
                 ),
               ),
@@ -190,7 +205,34 @@ class Profiles extends StatelessWidget {
               height: 35,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(15.0),
-                color: const Color.fromRGBO(102, 155, 139, 1),
+                color: const Color.fromRGBO(241, 241, 248, 1),
+              ),
+              child: MaterialButton(
+                onPressed: () async {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const CreateCards(),
+                    ),
+                  );
+                },
+                child: const Text(
+                  "Create a card",
+                  style: TextStyle(
+                    color: Color.fromRGBO(102, 155, 139, 1),
+                  ),
+                ),
+              ),
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(top: 15.0),
+            child: Container(
+              width: MediaQuery.of(context).size.width / 2.75,
+              height: 35,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(15.0),
+                color: const Color.fromRGBO(241, 241, 248, 1),
               ),
               child: MaterialButton(
                 onPressed: () {
@@ -199,7 +241,7 @@ class Profiles extends StatelessWidget {
                 child: const Text(
                   "Logout",
                   style: TextStyle(
-                    color: Color.fromRGBO(244, 244, 249, 1),
+                    color: Color.fromRGBO(102, 155, 139, 1),
                   ),
                 ),
               ),
@@ -210,4 +252,3 @@ class Profiles extends StatelessWidget {
     );
   }
 }
-
