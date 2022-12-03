@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
@@ -7,13 +9,44 @@ import '/services/flutterfire.dart';
 import './profiles.dart';
 import 'google_auth.dart';
 import 'create_user.dart';
+import 'package:http/http.dart' as http;
 
 class Login extends StatelessWidget {
   Login({Key? key}) : super(key: key);
+  Map dataMap = {};
+  List dataList = [];
+
+  Future<http.Response> postUser(email, name) {
+    return http.post(
+      Uri.parse(
+          'https://us-central1-group-project-2-16d40.cloudfunctions.net/postAuth/addAuth'),
+      headers: <String, String>{
+        'Content-Type': 'application/json; charset=UTF-8',
+      },
+      body: jsonEncode(
+        <String, String>{
+          'email': '$email',
+          'name': '$name',
+        },
+      ),
+    );
+  }
+
+  Future<void> getData() async {
+    //replace your restFull API here.
+    String url =
+        "https://us-central1-group-project-2-16d40.cloudfunctions.net/getAuthData";
+    final response = await http.get(Uri.parse(url));
+
+    dataMap = json.decode(response.body);
+    dataList = dataMap["usr"];
+  }
 
   final FirebaseAuth _auth = FirebaseAuth.instance;
   final TextEditingController _emailField = TextEditingController();
   final TextEditingController _passwordField = TextEditingController();
+  var email;
+  var name;
 
   Future<User?> signInWithGoogle(BuildContext context) async {
     await Authentication().signInWithGoogle();
@@ -233,6 +266,7 @@ class Login extends StatelessWidget {
                       recognizer: TapGestureRecognizer()
                         ..onTap = () {
                           signInWithGoogle(context);
+                          getData();
                         },
                     ),
                   ),
