@@ -7,25 +7,13 @@ import './other_profiles.dart';
 import 'package:http/http.dart' as http;
 
 class ProfileScreen extends StatefulWidget {
-  ProfileScreen({@required this.userprofile});
+  ProfileScreen({required this.userprofile});
   Map dataMap = {};
   List dataList = [];
   var userprofile;
 
-  Future<void> getData() async {
-    //replace your restFull API here.
-    String url =
-        "https://us-central1-group-project-2-16d40.cloudfunctions.net/getData/allUsers";
-    final response = await http.get(Uri.parse(url));
-
-    dataMap = json.decode(response.body);
-
-    dataList = dataMap["usr"];
-  }
-
   @override
   State<ProfileScreen> createState() => _ProfileScreen();
-  var name;
 }
 
 class _ProfileScreen extends State<ProfileScreen> {
@@ -37,7 +25,7 @@ class _ProfileScreen extends State<ProfileScreen> {
       fit: StackFit.expand,
       children: [
         Container(
-          decoration: BoxDecoration(
+          decoration: const BoxDecoration(
             gradient: LinearGradient(
               colors: [
                 Color.fromRGBO(4, 140, 139, 1),
@@ -78,25 +66,25 @@ class _ProfileScreen extends State<ProfileScreen> {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                              builder: (context) => Profiles(),
+                              builder: (context) => OtherProfiles(),
                             ),
                           );
                         },
                       ),
                     ],
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 20,
                   ),
                   Text(
-                    'text',
+                    widget.userprofile,
                     textAlign: TextAlign.center,
-                    style: TextStyle(
+                    style: const TextStyle(
                       color: Colors.white,
                       fontSize: 34,
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 22,
                   ),
                   Container(

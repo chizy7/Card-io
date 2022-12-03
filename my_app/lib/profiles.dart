@@ -13,31 +13,6 @@ import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'dart:core';
 
-// class UserData {
-//   final int usrId;
-//   final String email;
-//   final String name;
-//   final String bio;
-//   final String fav_topic;
-
-//   UserData({
-//     this.usrId,
-//     this.email,
-//     this.name,
-//     this.bio,
-//     this.fav_topic
-//   });
-// }
-
-// Future getRequest() async {
-//     //replace your restFull API here.
-//     String url = "https://us-central1-group-project-2-16d40.cloudfunctions.net/getData/allUsers";
-//     final response = await http.get(Uri.parse(url));
-
-//     debugPrint(response.body);
-
-//   }
-
 class MyPainterwhite extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {
@@ -66,6 +41,7 @@ class Profiles extends StatefulWidget {
 class _ProfileState extends State<Profiles> {
   Map dataMap = {};
   List dataList = [];
+  List userdata = [];
 
   Future<void> getData() async {
     //replace your restFull API here.
@@ -108,9 +84,9 @@ class _ProfileState extends State<Profiles> {
     final List<String> profiles = [];
     var profilelength = profiles.length;
 
-    for (var person in dataList) {
-      profiles.add(person["name"]);
-    }
+    // for (var person in dataList) {
+    //   profiles.add(person["name"]);
+    // }
 
     return Scaffold(
       backgroundColor: const Color.fromRGBO(102, 155, 139, 1),
@@ -147,13 +123,13 @@ class _ProfileState extends State<Profiles> {
             height: 300,
             width: 300,
             child: ListView(
-              children: profiles
+              children: dataList
                   .map(
                     (data) => ListTile(
                       title: Align(
                         alignment: Alignment.center,
                         child: Text(
-                          data,
+                          data["name"],
                           style: const TextStyle(
                             fontWeight: FontWeight.bold,
                             fontSize: 30,
@@ -166,7 +142,7 @@ class _ProfileState extends State<Profiles> {
                           context,
                           MaterialPageRoute(
                             builder: (context) => ProfileScreen(
-                              userprofile: data,
+                              userprofile: data["name"],
                             ),
                           ),
                         ),

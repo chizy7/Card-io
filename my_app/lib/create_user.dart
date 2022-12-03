@@ -1,16 +1,24 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:my_app/user_profile.dart';
 import 'package:http/http.dart' as http;
 
-void postUser(
-  String name,
-  String bio,
-  String fav_topic,
-) async {
-  var url = Uri.https('example.com', 'whatsit/create');
-  var request = {'usrID': ''};
-  var response =
-      await http.post(url, body: {'name': 'doodle', 'color': 'blue'});
+Future<http.Response> postUser(name, bio, topic) {
+  return http.post(
+    Uri.parse(
+        'https://us-central1-group-project-2-16d40.cloudfunctions.net/postUser/addUser'),
+    headers: <String, String>{
+      'Content-Type': 'application/json; charset=UTF-8',
+    },
+    body: jsonEncode(
+      <String, String>{
+        'name': '$name',
+        'bio': '$bio',
+        'fav_topic': '$topic',
+      },
+    ),
+  );
 }
 
 class CreateUser extends StatefulWidget {
@@ -138,11 +146,11 @@ class _CreateUserState extends State<CreateUser> {
                       ),
                       filled: true,
                       fillColor: Colors.white,
-                      hintText: "Enter your first name",
+                      hintText: "Enter your name",
                       hintStyle: TextStyle(
                         color: Colors.black,
                       ),
-                      labelText: "First Name",
+                      labelText: "Name",
                       labelStyle: TextStyle(
                         color: Color.fromRGBO(102, 155, 139, 1),
                       ),
@@ -171,53 +179,29 @@ class _CreateUserState extends State<CreateUser> {
                   ),
                 ),
               ),
-
-              // Bio TextField
               Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 25.0),
-                child: Container(
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    border: Border.all(color: Colors.grey),
-                    borderRadius: BorderRadius.circular(12),
-                  ),
-                  child: SizedBox(
-                    height: 150,
-
-                    child: TextFormField(
-                      controller: _bioField,
-                      decoration: const InputDecoration(
-                        enabledBorder: OutlineInputBorder(
-                          borderSide: BorderSide(
-                            width: 1,
-                            color: Color.fromRGBO(102, 155, 139, 1),
+                  padding: const EdgeInsets.symmetric(horizontal: 25.0),
+                  child: Container(
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        border: Border.all(color: Colors.grey),
+                        borderRadius: BorderRadius.circular(12),
+                      ),
+                      child: SizedBox(
+                        height: 150,
+                        child: Padding(
+                          padding: const EdgeInsets.only(left: 15.0),
+                          child: TextField(
+                            controller: _bioField,
+                            keyboardType: TextInputType.multiline,
+                            maxLines: null,
+                            decoration: const InputDecoration(
+                              border: InputBorder.none,
+                              hintText: 'Give a brief description of yourself',
+                            ),
                           ),
                         ),
-                        filled: true,
-                        fillColor: Colors.white,
-                        hintText: "Enter your first name",
-                        hintStyle: TextStyle(
-                          color: Colors.black,
-                        ),
-                        labelText: "First Name",
-                        labelStyle: TextStyle(
-                          color: Color.fromRGBO(102, 155, 139, 1),
-                        ),
-                      ),
-                    ),
-
-                    // child: TextField (
-                    //     keyboardType: TextInputType.multiline,
-                    //     maxLines: null,
-                    //     decoration: InputDecoration(
-                    //     contentPadding: EdgeInsets.symmetric(vertical: 40.0),
-                    //     border: InputBorder.none,
-                    //     hintText: 'Bio',
-                    //     ),
-                    // ),
-                  ),
-                ),
-              ),
+                      ))),
 
               Padding(
                 padding: const EdgeInsets.only(top: 40.0, right: 175),
@@ -257,11 +241,11 @@ class _CreateUserState extends State<CreateUser> {
                                 color: Color.fromRGBO(102, 155, 139, 1))),
                         filled: true,
                         fillColor: Colors.white,
-                        hintText: "Enter your first name",
+                        hintText: "Enter your favorite topic",
                         hintStyle: TextStyle(
                           color: Colors.black,
                         ),
-                        labelText: "First Name",
+                        labelText: "Fav",
                         labelStyle: TextStyle(
                           color: Color.fromRGBO(102, 155, 139, 1),
                         ),
@@ -280,10 +264,20 @@ class _CreateUserState extends State<CreateUser> {
                   ),
                   child: MaterialButton(
                     onPressed: () => {
+                      setState(
+                        () {
+                          name = _nameField.text;
+                          bio = _bioField.text;
+                          topic = _topicField.text;
+                        },
+                      ),
+                      postUser(name, bio, topic),
                       Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => ProfileScreen(),
+                            builder: (context) => ProfileScreen(
+                              userprofile: name,
+                            ),
                           ))
                     },
                     child: const Text(

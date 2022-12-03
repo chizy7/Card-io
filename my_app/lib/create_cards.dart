@@ -18,7 +18,6 @@ Future<http.Response> postCard(topic, word, definition) {
     },
     body: jsonEncode(
       <String, String>{
-        'id': '',
         'topic': '$topic',
         'word': '$word',
         'definition': '$definition',

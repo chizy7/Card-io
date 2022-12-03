@@ -17,7 +17,7 @@ class Register extends StatefulWidget {
 Future<http.Response> postUser(email, name) {
   return http.post(
     Uri.parse(
-        'https://us-central1-group-project-2-16d40.cloudfunctions.net/postUser/addUser'),
+        'https://us-central1-group-project-2-16d40.cloudfunctions.net/postAuth/addAuth'),
     headers: <String, String>{
       'Content-Type': 'application/json; charset=UTF-8',
     },
@@ -25,8 +25,6 @@ Future<http.Response> postUser(email, name) {
       <String, String>{
         'email': '$email',
         'name': '$name',
-        'bio': '',
-        'fav_topic': ''
       },
     ),
   );

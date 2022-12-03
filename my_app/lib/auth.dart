@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:my_app/other_profiles.dart';
 import './register.dart';
 import '/services/flutterfire.dart';
 import './profiles.dart';
@@ -114,7 +115,7 @@ class Login extends StatelessWidget {
                       enabledBorder: OutlineInputBorder(
                         borderSide: BorderSide(
                           width: 1,
-                          color: Color.fromRGBO(102, 155, 139, 1),
+                          color: Color.fromARGB(255, 1, 13, 9),
                         ),
                       ),
                       filled: true,
@@ -177,7 +178,7 @@ class Login extends StatelessWidget {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                              builder: (context) => Profiles(),
+                              builder: (context) => OtherProfiles(),
                             ),
                           );
                         }
