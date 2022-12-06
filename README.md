@@ -29,9 +29,10 @@ Slides: Here is the link to [CARD-iO slides](https://docs.google.com/presentatio
 Here's walkthroughs of implemented user stories:
 
 <p float="left">
- <img src='https://i.imgur.com/X2YIxKs.gif' width=250 alt='Fall #1' />
- <img src='https://i.imgur.com/HCb72bw.gif' width=250 alt='Fall #2' />
- <img src='https://i.imgur.com/QH55yfG.gif' width=250 alt='Fall #3' />
+ <img src='https://i.imgur.com/nQWorIG.gif' width=250 alt='Fall #1' />
+ <img src='https://i.imgur.com/PnKdZIL.gif' width=250 alt='Fall #2' />
+ <img src='https://i.imgur.com/jxD47gN.gif' width=250 alt='Fall #3' />
+ <img src='https://i.imgur.com/H8o0tjA.gif' width=250 alt='Fall #4' />
 </p>
 
 
